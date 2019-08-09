@@ -1,0 +1,794 @@
+{
+	"id": "858f4d7e-014d-47b8-8174-d3163f84201c",
+	"name": "Stripe API test",
+	"allTests": [],
+	"timestamp": "2019-08-09T09:35:57.917Z",
+	"collection_id": "9ead8d04-c5a3-491a-8a76-0420f1242355",
+	"folder_id": 0,
+	"target_type": "collection",
+	"environment_id": "8ac205dd-8a5d-4c63-8aa3-c26f4cbbb1f3",
+	"data": [],
+	"delay": 0,
+	"count": 1,
+	"collection": {
+		"id": "9ead8d04-c5a3-491a-8a76-0420f1242355",
+		"name": "Stripe API test",
+		"description": "",
+		"auth": {
+			"type": "apikey",
+			"apikey": [
+				{
+					"key": "value",
+					"value": "pk_test_fLvjhFsWGyDU1Hr71b7c8kEi00f2OC60UT"
+				},
+				{
+					"key": "key",
+					"value": "publica"
+				},
+				{
+					"key": "in",
+					"value": "query"
+				}
+			]
+		},
+		"events": null,
+		"variables": [],
+		"order": [
+			"9d752dcc-3e92-4d2d-8582-fe6e55696752",
+			"f416ba27-1450-4718-b0c6-3c8bd7cac3d6",
+			"438267d1-70e7-4674-84a9-286a8dcbabd7",
+			"517040b0-8d6c-4a30-9888-75afab10ffd0",
+			"0a32a1c0-4dba-4ccd-b86f-d7f3ab0f9b03",
+			"1e7c0ef6-9fa2-4a80-a5ed-c16e7062f19f",
+			"5c1aae55-a97d-4778-9dde-6c3ec26a07a8",
+			"3acc448d-78cf-412d-b064-264e34afcce6"
+		],
+		"folders_order": [],
+		"owner": "8329458",
+		"favorite": false
+	},
+	"folder": null,
+	"environment": null,
+	"globals": [],
+	"results": [
+		{
+			"name": "Get a customer",
+			"id": "9d752dcc-3e92-4d2d-8582-fe6e55696752",
+			"url": "https://api.stripe.com/v1/customers/cus_Fafm7wC4giQYds",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Checked returned customer": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checked returned customer": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"290"
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Checked returned customer": true
+				}
+			],
+			"time": "290",
+			"totalRequestTime": "290",
+			"iterationResults": {}
+		},
+		{
+			"name": "Add new customer",
+			"id": "f416ba27-1450-4718-b0c6-3c8bd7cac3d6",
+			"url": "https://api.stripe.com/v1/customers",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Your customer name": true,
+				"Successful POST request": true,
+				"Body matches string": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Your customer name": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Successful POST request": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body matches string": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"533"
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Your customer name": true,
+					"Successful POST request": true,
+					"Body matches string": true
+				}
+			],
+			"time": "533",
+			"totalRequestTime": "533",
+			"iterationResults": {}
+		},
+		{
+			"name": "test card to a customer",
+			"id": "438267d1-70e7-4674-84a9-286a8dcbabd7",
+			"url": "https://api.stripe.com/v1/customers/cus_Fafru6ITHhcYLT/sources",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Checked if is a card": true,
+				"Checked returned customer": true,
+				"Checked returned month expiration": true,
+				"Checked returned year expiration": true,
+				"Successful POST request": true,
+				"Get an id": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checked if is a card": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checked returned customer": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checked returned month expiration": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checked returned year expiration": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Successful POST request": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Get an id": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"503"
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Checked if is a card": true,
+					"Checked returned customer": true,
+					"Checked returned month expiration": true,
+					"Checked returned year expiration": true,
+					"Successful POST request": true,
+					"Get an id": true
+				}
+			],
+			"time": "503",
+			"totalRequestTime": "503",
+			"iterationResults": {}
+		},
+		{
+			"name": "charge a customer",
+			"id": "517040b0-8d6c-4a30-9888-75afab10ffd0",
+			"url": "https://api.stripe.com/v1/charges",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Checked returned customer": true,
+				"Checked returned amount": true,
+				"Checked returned description": true,
+				"Checked returned currency": true,
+				"Checked if is a charge": true,
+				"Successful POST request": true,
+				"Get an id": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checked returned customer": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checked returned amount": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checked returned description": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checked returned currency": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checked if is a charge": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Successful POST request": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Get an id": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"655"
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Checked returned customer": true,
+					"Checked returned amount": true,
+					"Checked returned description": true,
+					"Checked returned currency": true,
+					"Checked if is a charge": true,
+					"Successful POST request": true,
+					"Get an id": true
+				}
+			],
+			"time": "655",
+			"totalRequestTime": "655",
+			"iterationResults": {}
+		},
+		{
+			"name": "add payment method",
+			"id": "0a32a1c0-4dba-4ccd-b86f-d7f3ab0f9b03",
+			"url": "https://api.stripe.com/v1/payment_methods",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Checked if is a payment method": true,
+				"Checked month expiration": true,
+				"Checked year expiration": true,
+				"Checked las 4 numbers": true,
+				"Successful POST request": true,
+				"Get an id": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checked if is a payment method": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checked month expiration": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checked year expiration": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checked las 4 numbers": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Successful POST request": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Get an id": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"514"
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Checked if is a payment method": true,
+					"Checked month expiration": true,
+					"Checked year expiration": true,
+					"Checked las 4 numbers": true,
+					"Successful POST request": true,
+					"Get an id": true
+				}
+			],
+			"time": "514",
+			"totalRequestTime": "514",
+			"iterationResults": {}
+		},
+		{
+			"name": "see payment method",
+			"id": "1e7c0ef6-9fa2-4a80-a5ed-c16e7062f19f",
+			"url": "https://api.stripe.com/v1/payment_methods/pm_1F5UVzBsZCrcF153sQ5A4eGo",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Checked if is a payment method": true,
+				"Checked if the Id coincid": true,
+				"Checked month expiration": true,
+				"Checked year expiration": true,
+				"Checked las 4 numbers": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checked if is a payment method": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checked if the Id coincid": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checked month expiration": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checked year expiration": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checked las 4 numbers": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"295"
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Checked if is a payment method": true,
+					"Checked if the Id coincid": true,
+					"Checked month expiration": true,
+					"Checked year expiration": true,
+					"Checked las 4 numbers": true
+				}
+			],
+			"time": "295",
+			"totalRequestTime": "295",
+			"iterationResults": {}
+		},
+		{
+			"name": "delete card",
+			"id": "5c1aae55-a97d-4778-9dde-6c3ec26a07a8",
+			"url": "https://api.stripe.com/v1/customers/cus_Fafru6ITHhcYLT/sources/card_1F5UVyBsZCrcF153PfGI0avE",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Checked returned customer": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checked returned customer": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"385"
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Checked returned customer": true
+				}
+			],
+			"time": "385",
+			"totalRequestTime": "385",
+			"iterationResults": {}
+		},
+		{
+			"name": "delete a customer",
+			"id": "3acc448d-78cf-412d-b064-264e34afcce6",
+			"url": "https://api.stripe.com/v1/customers/cus_Fafru6ITHhcYLT",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Checked returned customer": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checked returned customer": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"352"
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Checked returned customer": true
+				}
+			],
+			"time": "352",
+			"totalRequestTime": "352",
+			"iterationResults": {}
+		}
+	],
+	"totalPass": 42,
+	"totalFail": 0,
+	"totalTime": 3527,
+	"lifecycle": "done",
+	"requests": [
+		{
+			"name": "Get a customer",
+			"id": "9d752dcc-3e92-4d2d-8582-fe6e55696752",
+			"url": "https://api.stripe.com/v1/customers/cus_Fafm7wC4giQYds",
+			"time": "2019-08-09T09:35:57.917Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checked returned customer": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "Add new customer",
+			"id": "f416ba27-1450-4718-b0c6-3c8bd7cac3d6",
+			"url": "https://api.stripe.com/v1/customers",
+			"time": "2019-08-09T09:35:57.917Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Your customer name": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Successful POST request": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body matches string": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "test card to a customer",
+			"id": "438267d1-70e7-4674-84a9-286a8dcbabd7",
+			"url": "https://api.stripe.com/v1/customers/cus_Fafru6ITHhcYLT/sources",
+			"time": "2019-08-09T09:35:57.917Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checked if is a card": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checked returned customer": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checked returned month expiration": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checked returned year expiration": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Successful POST request": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Get an id": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "charge a customer",
+			"id": "517040b0-8d6c-4a30-9888-75afab10ffd0",
+			"url": "https://api.stripe.com/v1/charges",
+			"time": "2019-08-09T09:35:57.917Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checked returned customer": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checked returned amount": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checked returned description": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checked returned currency": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checked if is a charge": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Successful POST request": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Get an id": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "add payment method",
+			"id": "0a32a1c0-4dba-4ccd-b86f-d7f3ab0f9b03",
+			"url": "https://api.stripe.com/v1/payment_methods",
+			"time": "2019-08-09T09:35:57.917Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checked if is a payment method": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checked month expiration": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checked year expiration": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checked las 4 numbers": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Successful POST request": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Get an id": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "see payment method",
+			"id": "1e7c0ef6-9fa2-4a80-a5ed-c16e7062f19f",
+			"url": "https://api.stripe.com/v1/payment_methods/pm_1F5UVzBsZCrcF153sQ5A4eGo",
+			"time": "2019-08-09T09:35:57.917Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checked if is a payment method": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checked if the Id coincid": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checked month expiration": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checked year expiration": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checked las 4 numbers": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "delete card",
+			"id": "5c1aae55-a97d-4778-9dde-6c3ec26a07a8",
+			"url": "https://api.stripe.com/v1/customers/cus_Fafru6ITHhcYLT/sources/card_1F5UVyBsZCrcF153PfGI0avE",
+			"time": "2019-08-09T09:35:57.917Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checked returned customer": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "delete a customer",
+			"id": "3acc448d-78cf-412d-b064-264e34afcce6",
+			"url": "https://api.stripe.com/v1/customers/cus_Fafru6ITHhcYLT",
+			"time": "2019-08-09T09:35:57.917Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checked returned customer": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		}
+	],
+	"synced": false
+}

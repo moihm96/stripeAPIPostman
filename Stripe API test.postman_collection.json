@@ -1,0 +1,708 @@
+{
+	"info": {
+		"_postman_id": "9ead8d04-c5a3-491a-8a76-0420f1242355",
+		"name": "Stripe API test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get a customer",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "bce09745-219b-441a-887c-766c37994e1c",
+						"exec": [
+							"pm.test(\"Status code is 200\", ()=>{",
+							"    pm.response.to.have.status(200)",
+							"})",
+							"",
+							"",
+							"const jsonData = pm.response.json();",
+							"",
+							"const CustomerID = pm.environment.get('CustomerID')",
+							"",
+							"pm.test(\"Checked returned customer\", function(){",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.id).to.eql(CustomerID)",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{api_key}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/v1/customers/{{CustomerID}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"v1",
+						"customers",
+						"{{CustomerID}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add new customer",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3450a563-adf2-43e8-9b38-ce26eae57918",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"const jsonData = pm.response.json();",
+							"",
+							"pm.environment.set(\"CustomerID\", jsonData.id);",
+							"",
+							"pm.test(\"Your customer name\", function () {",
+							"   ",
+							"",
+							"    pm.expect(jsonData.description).to.eql(\"Customer for Amalfi\");",
+							"    ",
+							"});",
+							"",
+							"pm.test(\"Successful POST request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200]);",
+							"});",
+							"",
+							"",
+							"pm.test(\"Body matches string\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"id\");",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{api_key}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "description",
+							"value": "Customer for Amalfi",
+							"type": "text"
+						},
+						{
+							"key": "source",
+							"value": "tok_visa",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/v1/customers",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"v1",
+						"customers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "test card to a customer",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "0962dbf9-861e-4d15-826d-754de999bfd5",
+						"exec": [
+							"pm.test(\"Status code is 200\", ()=>{",
+							"    pm.response.to.have.status(200)",
+							"})",
+							"",
+							"const jsonData = pm.response.json();",
+							"",
+							"const CustomerID = pm.environment.get('CustomerID')",
+							"",
+							"",
+							"pm.environment.set(\"CardID\", jsonData.id);",
+							"",
+							"pm.test(\"Checked if is a card\", function(){",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.object).to.eql(\"card\")",
+							"});",
+							"",
+							"pm.test(\"Checked returned customer\", function(){",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.customer).to.eql(CustomerID)",
+							"});",
+							"",
+							"pm.test(\"Checked returned month expiration\", function(){",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.exp_month).to.eql(8)",
+							"});",
+							"",
+							"pm.test(\"Checked returned year expiration\", function(){",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.exp_year).to.eql(2020)",
+							"});",
+							"",
+							"pm.test(\"Successful POST request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200]);",
+							"});",
+							"",
+							"",
+							"pm.test(\"Get an id\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"id\");",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{api_key}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "source",
+							"value": "tok_visa",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/v1/customers/{{CustomerID}}/sources",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"v1",
+						"customers",
+						"{{CustomerID}}",
+						"sources"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "charge a customer",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "91359b60-b1ac-47db-a0f8-7da807faa1af",
+						"exec": [
+							"pm.test(\"Status code is 200\", ()=>{",
+							"    pm.response.to.have.status(200)",
+							"})",
+							"",
+							"",
+							"const jsonData = pm.response.json();",
+							"",
+							"const CustomerID = pm.environment.get('CustomerID')",
+							"",
+							"pm.test(\"Checked returned customer\", function(){",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.customer).to.eql(CustomerID)",
+							"});",
+							"",
+							"pm.test(\"Checked returned amount\", function(){",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.amount).to.eql(1000)",
+							"});",
+							"",
+							"pm.test(\"Checked returned description\", function(){",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.description).to.eql(\"Charge for Shopping\")",
+							"});",
+							"",
+							"pm.test(\"Checked returned currency\", function(){",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.currency).to.eql(\"chf\")",
+							"});",
+							"",
+							"pm.test(\"Checked if is a charge\", function(){",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.object).to.eql(\"charge\")",
+							"});",
+							"",
+							"",
+							"pm.test(\"Successful POST request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200]);",
+							"});",
+							"",
+							"",
+							"pm.test(\"Get an id\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"id\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{api_key}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "amount",
+							"value": "1000",
+							"type": "text"
+						},
+						{
+							"key": "currency",
+							"value": "CHF",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "Charge for Shopping",
+							"type": "text"
+						},
+						{
+							"key": "source",
+							"value": "{{CardID}}",
+							"type": "text"
+						},
+						{
+							"key": "customer",
+							"value": "{{CustomerID}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/v1/charges",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"v1",
+						"charges"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add payment method",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6b2c1038-0e85-4591-925a-0295046788e7",
+						"exec": [
+							"pm.test(\"Status code is 200\", ()=>{",
+							"    pm.response.to.have.status(200)",
+							"})",
+							"",
+							"",
+							"const jsonData = pm.response.json();",
+							"",
+							"pm.environment.set(\"PaymentID\", jsonData.id);",
+							"",
+							"pm.test(\"Checked if is a payment method\", function(){",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.object).to.eql(\"payment_method\")",
+							"});",
+							"",
+							"pm.test(\"Checked month expiration\", function(){",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.card.exp_month).to.eql(12)",
+							"});",
+							"",
+							"pm.test(\"Checked year expiration\", function(){",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.card.exp_year).to.eql(2020)",
+							"});",
+							"",
+							"pm.test(\"Checked las 4 numbers\", function(){",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.card.last4).to.eql(\"4242\")",
+							"});",
+							"",
+							"pm.test(\"Successful POST request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200]);",
+							"});",
+							"",
+							"",
+							"pm.test(\"Get an id\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"id\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{api_key}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "type",
+							"value": "card",
+							"type": "text"
+						},
+						{
+							"key": "card[number]",
+							"value": "4242424242424242",
+							"type": "text"
+						},
+						{
+							"key": "card[exp_month]",
+							"value": "12",
+							"type": "text"
+						},
+						{
+							"key": "card[exp_year]",
+							"value": "2020",
+							"type": "text"
+						},
+						{
+							"key": "card[cvc]",
+							"value": "123",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/v1/payment_methods",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"v1",
+						"payment_methods"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "see payment method",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "50d25b1d-504b-44c8-b76a-75fca9c604b1",
+						"exec": [
+							"pm.test(\"Status code is 200\", ()=>{",
+							"    pm.response.to.have.status(200)",
+							"})",
+							"",
+							"",
+							"const jsonData = pm.response.json();",
+							"",
+							"const PaymentID = pm.environment.get('PaymentID')",
+							"",
+							"pm.test(\"Checked if is a payment method\", function(){",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.object).to.eql(\"payment_method\")",
+							"});",
+							"",
+							"pm.test(\"Checked if the Id coincid\", function(){",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.id).to.eql(PaymentID)",
+							"});",
+							"",
+							"pm.test(\"Checked month expiration\", function(){",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.card.exp_month).to.eql(12)",
+							"});",
+							"",
+							"pm.test(\"Checked year expiration\", function(){",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.card.exp_year).to.eql(2020)",
+							"});",
+							"",
+							"pm.test(\"Checked las 4 numbers\", function(){",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.card.last4).to.eql(\"4242\")",
+							"});",
+							"",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{api_key}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/v1/payment_methods/{{PaymentID}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"v1",
+						"payment_methods",
+						"{{PaymentID}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete card",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ee50a770-5ecf-472e-a5b4-3939a3396482",
+						"exec": [
+							"pm.test(\"Status code is 200\", ()=>{",
+							"    pm.response.to.have.status(200)",
+							"})",
+							"",
+							"",
+							"const jsonData = pm.response.json();",
+							"",
+							"const CardID = pm.environment.get('CardID')",
+							"",
+							"pm.test(\"Checked returned customer\", function(){",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.id).to.eql(CardID)",
+							"});",
+							"",
+							"pm.test(\"Checked returned customer\", function(){",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.object).to.eql(\"card\")",
+							"});",
+							"",
+							"pm.test(\"Checked returned customer\", function(){",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.deleted).to.eql(true)",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{api_key}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/v1/customers/{{CustomerID}}/sources/{{CardID}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"v1",
+						"customers",
+						"{{CustomerID}}",
+						"sources",
+						"{{CardID}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete a customer",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7c9017dc-584f-43c1-894a-2e281c2df340",
+						"exec": [
+							"pm.test(\"Status code is 200\", ()=>{",
+							"    pm.response.to.have.status(200)",
+							"})",
+							"",
+							"",
+							"const jsonData = pm.response.json();",
+							"",
+							"const CustomerID = pm.environment.get('CustomerID')",
+							"",
+							"pm.test(\"Checked returned customer\", function(){",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.id).to.eql(CustomerID)",
+							"});",
+							"pm.test(\"Checked returned customer\", function(){",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.object).to.eql(\"customer\")",
+							"});",
+							"",
+							"pm.test(\"Checked returned customer\", function(){",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.deleted).to.eql(true)",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{api_key}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/v1/customers/{{CustomerID}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"v1",
+						"customers",
+						"{{CustomerID}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "apikey",
+		"apikey": [
+			{
+				"key": "value",
+				"value": "pk_test_fLvjhFsWGyDU1Hr71b7c8kEi00f2OC60UT",
+				"type": "string"
+			},
+			{
+				"key": "key",
+				"value": "publica",
+				"type": "string"
+			},
+			{
+				"key": "in",
+				"value": "query",
+				"type": "string"
+			}
+		]
+	}
+}
